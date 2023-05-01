@@ -103,3 +103,38 @@ function getRussianEquivalent(key) {
     return index !== -1 ? ruKeys.charAt(index) : key
 }
 
+
+// add key down/key up event listener
+
+document.addEventListener("keydown", e => {
+    const key = e.key
+    const keyEl = document.querySelector(`button[data-key='${key.toLowerCase()}']`)
+    if (keyEl) {
+        keyEl.classList.add("active-key")
+    }
+})
+
+document.addEventListener("keyup", e => {
+    const key = e.key
+    const keyEl = document.querySelector(`button[data-key='${key.toLowerCase()}']`)
+    if (keyEl) {
+        keyEl.classList.remove("active-key")
+    }
+})
+
+document.addEventListener("keydown", e => {
+    const action = e.code
+    const keyEl = document.querySelector(`button[data-action='${action.toLowerCase()}']`)
+    if (keyEl) {
+        keyEl.classList.add("active-key")
+    }
+})
+
+document.addEventListener("keyup", e => {
+    const action = e.code
+    const keyEl = document.querySelector(`button[data-action='${action.toLowerCase()}']`)
+    if (keyEl) {
+        keyEl.classList.remove("active-key")
+    }
+})
+
