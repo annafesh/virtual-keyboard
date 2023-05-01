@@ -1,3 +1,7 @@
+//default language setting
+
+let isEnglishLayout = true
+
 // create input area
 
 const input = document.createElement("input")
@@ -21,6 +25,8 @@ const keys = [
     { action: "Space", class: "space" },
     { action: "Alt", class: "alt" },
     { action: "Ctrl", class: "ctrl" },],
+
+    [{ action: "En/Ru", class: "lang" }], //language options
 ]
 
 keys.forEach(row => {
@@ -68,4 +74,32 @@ else if (key === "En/Ru") {
     }
     })
 })
+
+//add language option
+
+const langKeyEl = document.querySelector(".key.lang")
+langKeyEl.addEventListener("click", () => {
+    isEnglishLayout = !isEnglishLayout
+
+    const keys = keyboard.querySelectorAll(".key")
+keys.forEach(keyEl => {
+    const key = keyEl.getAttribute("data-key")
+    const action = keyEl.getAttribute("data-action")
+    if (key && key.length === 1) {
+
+        keyEl.textContent = isEnglishLayout ? key : getRussianEquivalent(key)
+    } else if (action === "lang") {
+        keyEl.textContent = isEnglishLayout ? "En/Ru" : "Ru/En"
+    }
+    })
+})
+
+//russian symbols
+
+function getRussianEquivalent(key) {
+    const enKeys = "qwertyuiop[]\\asdfghjkl;'zxcvbnm,./"
+    const ruKeys = "йцукенгшщзхъфывапролджэячсмитьбю,."
+    const index = enKeys.indexOf(key)
+    return index !== -1 ? ruKeys.charAt(index) : key
+}
 
