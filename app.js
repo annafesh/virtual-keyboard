@@ -138,3 +138,20 @@ document.addEventListener("keyup", e => {
     }
 })
 
+// add event listeners corresponding with actual keyboard
+
+document.addEventListener("keydown", event => {
+    const key = event.key
+    const keyEl = document.querySelector(`.key[data-key="${key}"]`)
+    if (keyEl) {
+        keyEl.classList.add("active-key")
+    }
+})
+
+document.addEventListener("keyup", event => {
+    const key = event.key
+    const keyEl = document.querySelector(`.key[data-key="${key}"]`)
+    if (keyEl) {
+        keyEl.classList.remove("active-key")
+    }
+})
